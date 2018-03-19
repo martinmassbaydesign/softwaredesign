@@ -15,6 +15,13 @@ public class RaceTrack {
     cars = new ArrayList<Car>();
     locations = new ArrayList<Location>();
     clock = new Timer();
+    for(int i = 0; i < lap;i++){
+      locations.add(new Location());
+      locations.get(i).setCoords((50*i)+25,(25*i)+50);
+      cars.add(new Car());
+      cars.get(i).setX((50*i)+25);
+      cars.get(i).setY((25*i)+50);
+    }
   }
   
   public RaceTrack(int lap){

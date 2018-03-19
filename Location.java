@@ -1,5 +1,5 @@
 import javafx.scene.shape.Circle;
-
+import javafx.scene.paint.Color;
 public class Location{
   
   private int xValue;
@@ -42,6 +42,8 @@ public class Location{
     yValue = y;
   }
   public Circle draw(){
-    return new Circle(xValue,yValue,3);
+    Circle c = new Circle(xValue,yValue,3);
+    c.setFill(Color.WHITE);
+    return c;
   }
 }

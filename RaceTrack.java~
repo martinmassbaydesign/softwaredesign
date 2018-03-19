@@ -14,16 +14,20 @@ public class RaceTrack {
     this.lap = 4;
     cars = new ArrayList<Car>();
     locations = new ArrayList<Location>();
+    clock = new Timer();
   }
   
   public RaceTrack(int lap){
     this.lap = lap;
+    cars = new ArrayList<Car>();
+    locations = new ArrayList<Location>();
+    clock = new Timer();
   }
   
   public Car getWinner(){
     if(checkWinner()){
       for(int i =0; i<cars.size(); i++){
-        if(getCar(i).getLocations() >=lap){
+        if(getCar(i).getLocationsTouched() >=lap){
           return getCar(i);
         }
       }
@@ -52,7 +56,7 @@ public class RaceTrack {
   //checks for winner if the car location is greater than 4
   public boolean checkWinner(){
     for(int i =0; i<cars.size(); i++){
-      if(getCar(i).getLocations() >= lap)
+      if(getCar(i).getLocationsTouched() >= lap)
         return true;
     }
     return false;
@@ -79,11 +83,11 @@ public class RaceTrack {
   }
   
   public void startTimer(){
-    clock.start();
+//    clock.start();
   }
   
   private Location getNext(int index){
-    return getLocation((index+getCar(index).getLocations())%lap);
+    return getLocation((index+getCar(index).getLocationsTouched())%lap);
   }
   
 }
