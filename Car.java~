@@ -65,22 +65,18 @@ public class Car{
   
   public void setX(int x){
     xLocation = x;
-    update();
   }
   
   public void setY(int y){
     yLocation = y;
-    update();
   }
   
   public void moveX(int x){
     xLocation+=x;
-    update();
   }
   
   public void moveY(int y){
     yLocation+=y;
-    update();
   }
   
   public void setSpeed(int speedValue){
@@ -99,9 +95,5 @@ public class Car{
     locationsTouched++;
   }
   
-  // **************** Helper Methods ******************
-  private void update(){
-    carShape.setY(yLocation);
-    carShape.setX(xLocation);
 }
-}
+  
