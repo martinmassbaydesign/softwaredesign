@@ -20,8 +20,11 @@ public class RaceVenue{
   public RaceVenue(){
     track = new RaceTrack();
     carInformation = new Text();
-    this.musicFile = "";
+    this.musicFile = "Top Gear Music.mp3";
     this.venueName = "Awakenings";
+    soundTrack = new Media(new File(musicFile).toURI().toString());
+    mediaPlayer = new MediaPlayer(soundTrack);
+    mediaPlayer.play();
   }
   public RaceVenue(String musicFile, String venueName){
     this.musicFile = musicFile;
