@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Timer;
 import javafx.scene.Group;
+import javafx.scene.paint.Color;
 
 public class RaceTrack {
   
@@ -18,7 +19,7 @@ public class RaceTrack {
     for(int i = 0; i < lap;i++){
       locations.add(new Location());
       locations.get(i).setCoords((90*((i-1)%2))+180,(90*((i)%3))+180);
-      cars.add(new Car());
+      cars.add(new Car(0, 0, Color.RED,"Generic Race car","Generic Model","Car" + i));
       cars.get(i).setX((90*((i-1)%2))+180);
       cars.get(i).setY((90*((i)%3))+180);
     }

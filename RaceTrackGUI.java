@@ -45,9 +45,9 @@ public class RaceTrackGUI extends Application{
     timer.setCycleCount(Animation.INDEFINITE);
     
     
-      venue.getTrack().getLocation(0).setCoords(50,200);
+      venue.getTrack().getLocation(0).setCoords(25,200);
       venue.getTrack().getLocation(1).setCoords(300,0);
-      venue.getTrack().getLocation(2).setCoords(550,200);
+      venue.getTrack().getLocation(2).setCoords(575,200);
       venue.getTrack().getLocation(3).setCoords(300,400);
     
   //  raceFinish = new Alert("The race is over!");

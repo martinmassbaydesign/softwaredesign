@@ -1,5 +1,7 @@
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
+import javafx.scene.Group;
+import javafx.scene.text.Text;
 
 public class Car{
   
@@ -10,9 +12,12 @@ public class Car{
   private int locationsTouched;
   private String make;
   private String model;
+  private String carName;
   private Rectangle carShape;
+  private Text title;
   
   public Car(){
+    carName = "Generic car";
     xLocation = 0;
     yLocation = 0;
     speed = 1+(int)(Math.random()*5);
@@ -22,11 +27,13 @@ public class Car{
     model = "Generic";
     carShape = new Rectangle(xLocation,yLocation,50,20);
     carShape.setFill(color);
+    title = new Text(xLocation,yLocation-10,carName);
   }
   
-  public Car(int x, int y, Color c,String mk,String mdl){
+  public Car(int x, int y, Color c,String mk,String mdl,String name){
     xLocation = x;
     yLocation = y;
+    carName = name;
     color = c;
     make = mk;
     model = mdl;
@@ -34,6 +41,7 @@ public class Car{
     locationsTouched = 0;
     carShape = new Rectangle(xLocation,yLocation,50,20);
     carShape.setFill(color);
+    title = new Text(xLocation,yLocation-10,carName);
   }
   
     //********************* Getters ****************************************
@@ -66,10 +74,13 @@ public class Car{
     return color;
   }
   
-  public Rectangle draw(){
+  public Group draw(){
+    Group car = new Group();
     update();
     carShape.setFill(color);
-    return carShape;
+    car.getChildren().add(title);
+    car.getChildren().add(carShape);
+    return car;
   }
   
   public String toString(){
@@ -120,6 +131,8 @@ public class Car{
   
   // **************** Helper Methods ******************
   private void update(){
+    title.setY(yLocation-10);
+    title.setX(xLocation);
     carShape.setY(yLocation);
     carShape.setX(xLocation);
 }
