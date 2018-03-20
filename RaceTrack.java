@@ -7,15 +7,13 @@ public class RaceTrack {
   
   private ArrayList<Car> cars;
   private ArrayList<Location> locations;
-  private Timer clock; 
-  
+
   private int lap;
   
   public RaceTrack(){
     this.lap = 4;
     cars = new ArrayList<Car>();
     locations = new ArrayList<Location>();
-    clock = new Timer();
     for(int i = 0; i < lap;i++){
       locations.add(new Location());
       locations.get(i).setCoords((90*((i-1)%2))+180,(90*((i)%3))+180);
@@ -29,7 +27,6 @@ public class RaceTrack {
     this.lap = lap;
     cars = new ArrayList<Car>();
     locations = new ArrayList<Location>();
-    clock = new Timer();
   }
   
   public Car getWinner(){
@@ -60,10 +57,6 @@ public class RaceTrack {
         }
         if((getCar(i).getX() == getNext(i).getX()) && (getCar(i).getY() == getNext(i).getY()))
           getCar(i).hitLocation();
-//      if((Math.abs(getCar(i).getX() - getNext(i).getX()) < getCar(i).getSpeed()) || (Math.abs(getCar(i).getY() - getNext(i).getY()) < getCar(i).getSpeed())){
-//        getCar(i).setX(getNext(i).getX());
-//        getCar(i).setY(getNext(i).getY());
-//    }
       }
     }
   }
@@ -93,15 +86,7 @@ public class RaceTrack {
     return locations.get(locationNum);
     
   }
-  
-  public String getTime(){
-    return "The time is: " + clock;
-  }
-  
-  public void startTimer(){
-//    clock.start();
-  }
-  
+
   private void startAgain(){
     for(int i = 0; i < lap; i++){
       getCar(i).resetLocations();

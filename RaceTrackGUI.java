@@ -26,7 +26,7 @@ public class RaceTrackGUI extends Application{
   public void start(Stage start){
     venue = new RaceVenue();
     startButton = new Button("Start");
-        startButton.setOnMouseClicked((new EventHandler<MouseEvent>() {
+    startButton.setOnMouseClicked((new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event){
         timer.play();
         System.out.println("beep");
@@ -45,35 +45,28 @@ public class RaceTrackGUI extends Application{
     timer.setCycleCount(Animation.INDEFINITE);
     
     
-      venue.getTrack().getLocation(0).setCoords(25,200);
-      venue.getTrack().getLocation(1).setCoords(300,0);
-      venue.getTrack().getLocation(2).setCoords(575,200);
-      venue.getTrack().getLocation(3).setCoords(300,400);
+    venue.getTrack().getLocation(0).setCoords(25,200);
+    venue.getTrack().getLocation(1).setCoords(300,0);
+    venue.getTrack().getLocation(2).setCoords(575,200);
+    venue.getTrack().getLocation(3).setCoords(300,400);
     
-  //  raceFinish = new Alert("The race is over!");
+    //  raceFinish = new Alert("The race is over!");
     
     Group g = new Group(venue.drawVenue(600,400));
-     g.getChildren().add(venue.draw());
-     g.setTranslateX(100);
-     g.setTranslateY(100);
+    g.getChildren().add(venue.draw());
+    g.setTranslateX(100);
+    g.setTranslateY(100);
     g.getChildren().add(startButton);
-   
     
     Scene scene = new Scene(g,1000,600);   
-
-    
     Stage stage = new Stage();
     stage.setScene(scene);
     stage.show();
   }
-
   
   private void drive(){
     venue.getTrack().moveCars();
   }
-  
-  
-  
   
   public static void main(String args[]){
     launch(args);
