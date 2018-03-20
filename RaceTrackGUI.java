@@ -33,20 +33,33 @@ public class RaceTrackGUI extends Application{
       }
     }));
     winner = new Text();
-    timer = new Timeline(new KeyFrame( Duration.millis(100),new EventHandler<ActionEvent>(){
+    timer = new Timeline(new KeyFrame( Duration.millis(50),new EventHandler<ActionEvent>(){
       @Override public void handle(ActionEvent actionEvent){
         drive();
         System.out.println("boop");
+        if(venue.getTrack().checkWinner()){
+          timer.pause();
+          System.out.println(venue.getTrack().getWinner());
+        }
       }}));
     timer.setCycleCount(Animation.INDEFINITE);
     
- 
+    
+      venue.getTrack().getLocation(0).setCoords(50,200);
+      venue.getTrack().getLocation(1).setCoords(300,0);
+      venue.getTrack().getLocation(2).setCoords(550,200);
+      venue.getTrack().getLocation(3).setCoords(300,400);
+    
   //  raceFinish = new Alert("The race is over!");
     
-    Group g = new Group(venue.draw());
+    Group g = new Group(venue.drawVenue(600,400));
+     g.getChildren().add(venue.draw());
+     g.setTranslateX(100);
+     g.setTranslateY(100);
     g.getChildren().add(startButton);
+   
     
-    Scene scene = new Scene(g,600,300);   
+    Scene scene = new Scene(g,1000,600);   
 
     
     Stage stage = new Stage();
@@ -56,7 +69,6 @@ public class RaceTrackGUI extends Application{
 
   
   private void drive(){
-    
     venue.getTrack().moveCars();
   }
   

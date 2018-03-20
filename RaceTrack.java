@@ -44,21 +44,26 @@ public class RaceTrack {
   
   public void moveCars(){
     for(int i = 0; i < cars.size();i++){
-      if(getCar(i).getX() <getNext(i).getX()){
-        getCar(i).moveX(1);
+      for(int j = 0; j < getCar(i).getSpeed();j++){
+        if(getCar(i).getX() <getNext(i).getX()){
+          getCar(i).moveX(1);
+        }
+        else if(getCar(i).getX() > getNext(i).getX()){
+          getCar(i).moveX(-1);
+        }
+        if(getCar(i).getY() <getNext(i).getY()){
+          getCar(i).moveY(1);
+        }
+        else if(getCar(i).getY() > getNext(i).getY()){
+          getCar(i).moveY(-1);
+        }
+        if((getCar(i).getX() == getNext(i).getX()) && (getCar(i).getY() == getNext(i).getY()))
+          getCar(i).hitLocation();
+//      if((Math.abs(getCar(i).getX() - getNext(i).getX()) < getCar(i).getSpeed()) || (Math.abs(getCar(i).getY() - getNext(i).getY()) < getCar(i).getSpeed())){
+//        getCar(i).setX(getNext(i).getX());
+//        getCar(i).setY(getNext(i).getY());
+//    }
       }
-      else if(getCar(i).getX() > getNext(i).getX()){
-        getCar(i).moveX(-1);
-      }
-      if(getCar(i).getY() <getNext(i).getY()){
-        getCar(i).moveY(1);
-      }
-      else if(getCar(i).getY() > getNext(i).getY()){
-        getCar(i).moveY(-1);
-      }
-      if((getCar(i).getX() == getNext(i).getX()) && (getCar(i).getY() == getNext(i).getY()))
-        getCar(i).hitLocation();
-    
     }
   }
   
@@ -96,6 +101,12 @@ public class RaceTrack {
 //    clock.start();
   }
   
+  private void startAgain(){
+    for(int i = 0; i < lap; i++){
+      getCar(i).resetLocations();
+      
+    }
+  }
   private Location getNext(int index){
     return getLocation((index+getCar(index).getLocationsTouched())%lap);
   }

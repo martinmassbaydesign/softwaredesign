@@ -21,6 +21,7 @@ public class Car{
     make = "Generic";
     model = "Generic";
     carShape = new Rectangle(xLocation,yLocation,50,20);
+    carShape.setFill(color);
   }
   
     //********************* Getters ****************************************
@@ -54,6 +55,8 @@ public class Car{
   }
   
   public Rectangle draw(){
+    update();
+    carShape.setFill(color);
     return carShape;
   }
   

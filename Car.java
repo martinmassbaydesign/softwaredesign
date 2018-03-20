@@ -15,11 +15,23 @@ public class Car{
   public Car(){
     xLocation = 0;
     yLocation = 0;
-    speed = 1;
+    speed = 1+(int)(Math.random()*5);
     color = Color.RED;
     locationsTouched = 0;
     make = "Generic";
     model = "Generic";
+    carShape = new Rectangle(xLocation,yLocation,50,20);
+    carShape.setFill(color);
+  }
+  
+  public Car(int x, int y, Color c,String mk,String mdl){
+    xLocation = x;
+    yLocation = y;
+    color = c;
+    make = mk;
+    model = mdl;
+    speed = 1+(int)(Math.random()*5);
+    locationsTouched = 0;
     carShape = new Rectangle(xLocation,yLocation,50,20);
     carShape.setFill(color);
   }
@@ -100,6 +112,10 @@ public class Car{
   
   public void hitLocation(){
     locationsTouched++;
+  }
+  
+  public void resetLocations(){
+    locationsTouched = 0;
   }
   
   // **************** Helper Methods ******************

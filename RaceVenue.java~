@@ -52,6 +52,9 @@ public class RaceVenue{
     g.getChildren().add(e2);
    return g;                     
   }
+  public RaceTrack getTrack(){
+    return track;
+  }
   
   public Group draw(){
     return track.drawTrack();

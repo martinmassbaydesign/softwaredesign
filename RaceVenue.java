@@ -46,7 +46,7 @@ public class RaceVenue{
     Group g = new Group();
     Ellipse e1 = new Ellipse(canvasWidth/2,canvasHeight/2,(canvasWidth*2)/3,(canvasHeight*2)/3);
     Ellipse e2 = new Ellipse(canvasWidth/2,canvasHeight/2,canvasWidth/3,canvasHeight/3);
-    e1.setFill(Color.BROWN);
+    e1.setFill(Color.BLACK);
     e2.setFill(Color.GREEN);
     g.getChildren().add(e1);
     g.getChildren().add(e2);
