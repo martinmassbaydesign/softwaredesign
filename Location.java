@@ -43,7 +43,7 @@ public class Location{
   }
   public Circle draw(){
     Circle c = new Circle(xValue,yValue,3);
-    c.setFill(Color.WHITE);
+    c.setFill(Color.PURPLE);
     return c;
   }
 }

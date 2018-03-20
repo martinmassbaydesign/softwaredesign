@@ -56,6 +56,9 @@ public class RaceTrack {
       else if(getCar(i).getY() > getNext(i).getY()){
         getCar(i).moveY(-1);
       }
+      if((getCar(i).getX() == getNext(i).getX()) && (getCar(i).getY() == getNext(i).getY()))
+        getCar(i).hitLocation();
+    
     }
   }
   
