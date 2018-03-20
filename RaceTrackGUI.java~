@@ -6,6 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
+import javafx.scene.input.MouseEvent; 
+import javafx.event.EventHandler;
+import javafx.event.ActionEvent;
 
 
 public class RaceTrackGUI extends Application{
@@ -19,10 +22,24 @@ public class RaceTrackGUI extends Application{
     venue = new RaceVenue();
     startButton = new Button("Start");
     winner = new Text();
+ 
   //  raceFinish = new Alert("The race is over!");
     
     Group g = new Group(venue.draw());
-    Scene scene = new Scene(g);
+    g.getChildren().add(startButton);
+    
+    Scene scene = new Scene(g);   
+    startButton.setOnMouseClicked((new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event){
+        venue.getTrack().moveCars();
+        
+        Group g = new Group(venue.draw());
+        g.getChildren().add(startButton);
+        scene.setRoot(g);
+        System.out.println("beep");
+      }
+    }));
+    
     Stage stage = new Stage();
     stage.setScene(scene);
     stage.show();

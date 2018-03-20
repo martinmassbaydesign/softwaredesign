@@ -17,10 +17,10 @@ public class RaceTrack {
     clock = new Timer();
     for(int i = 0; i < lap;i++){
       locations.add(new Location());
-      locations.get(i).setCoords((50*i)+25,(25*i)+50);
+      locations.get(i).setCoords((90*((i-1)%2))+180,(90*((i)%3))+180);
       cars.add(new Car());
-      cars.get(i).setX((50*i)+25);
-      cars.get(i).setY((25*i)+50);
+      cars.get(i).setX((90*((i-1)%2))+180);
+      cars.get(i).setY((90*((i)%3))+180);
     }
   }
   
