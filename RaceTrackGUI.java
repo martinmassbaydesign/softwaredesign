@@ -16,12 +16,15 @@ import javafx.util.Duration;
 import javafx.animation.Animation;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class RaceTrackGUI extends Application{
   
   private RaceVenue venue;
   private Button startButton;
   private Text winner;
+  private Text title;
   private Alert  raceFinish;
   private Timeline timer;
   private boolean started;
@@ -35,6 +38,7 @@ public class RaceTrackGUI extends Application{
     VBox carInfo = new VBox(drawCarPane());
     
     winner = new Text();
+    title = new Text(); //title of the game
     timer = new Timeline(new KeyFrame( Duration.millis(50),new EventHandler<ActionEvent>(){
       @Override public void handle(ActionEvent actionEvent){
         drive();
@@ -80,11 +84,22 @@ public class RaceTrackGUI extends Application{
     buttons.setTranslateX(-50);
     buttons.setTranslateY(50);
     carInfo.setTranslateX(50);
+    
+    //add title of the game, changes the font size and color followed by a stroke.
+    title.setText("Top Gear");
+    title.setTranslateX(480);
+    title.setTranslateY(20);
+    title.setFill(Color.GREEN);
+    title.setFont(Font.font ("Verdana", FontWeight.BOLD, 80));
+    title.setStroke(Color.YELLOW);
+    title.setStrokeWidth(3);
+    
     //g.getChildren().add(startButton);
     bp = new BorderPane();
     bp.setCenter(g);
     bp.setRight(buttons);
     bp.setLeft(carInfo);
+    bp.setTop(title);
     Scene scene = new Scene(bp,1300,720);   
     Stage stage = new Stage();
     stage.setScene(scene);
