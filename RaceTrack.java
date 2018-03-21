@@ -38,7 +38,7 @@ public class RaceTrack {
   public Car getWinner(){
     if(checkWinner()){
       for(int i =0; i<cars.size(); i++){
-        if(getCar(i).getLocationsTouched() >=lap){
+        if(getCar(i).getLocationsTouched() >lap){
           return getCar(i);
         }
       }
@@ -106,6 +106,10 @@ public class RaceTrack {
       cars.get(i).setY(getNext(i).getY());
     }
     
+  }
+  
+  public int getCarTotal(){
+    return cars.size();
   }
   
   private Location getNext(int index){

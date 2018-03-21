@@ -25,7 +25,7 @@ public class Car{
     locationsTouched = 0;
     make = "Generic";
     model = "Generic";
-    carShape = new Rectangle(xLocation,yLocation,50,20);
+    carShape = new Rectangle(xLocation-25,yLocation-10,50,20);
     carShape.setFill(color);
     title = new Text(xLocation,yLocation-10,carName);
   }
@@ -39,7 +39,7 @@ public class Car{
     model = mdl;
     speed = 1+(int)(Math.random()*5);
     locationsTouched = 0;
-    carShape = new Rectangle(xLocation,yLocation,50,20);
+    carShape = new Rectangle(xLocation-25,yLocation-10,50,20);
     carShape.setFill(color);
     title = new Text(xLocation,yLocation-10,carName);
   }
@@ -84,8 +84,12 @@ public class Car{
     return car;
   }
   
+  public String getName(){
+    return carName;
+  }
+  
   public String toString(){
-    return "X location: " + getX() +"\nYLocation: " + getY() + "\nMake: " + getMake() + "\nModel: " + getModel() + "\nSpeed: " + getSpeed() + "\nColor: " + getColor();
+    return "X location: " + getX() +"\nYLocation: " + getY() + "\nMake: " + getMake() + "\nModel: " + getModel() + "\nSpeed: " + getSpeed() + "\nName: " + getName();
   }
   
    //********************* Setters ****************************************
@@ -124,6 +128,7 @@ public class Car{
   
   public void hitLocation(){
     locationsTouched++;
+    speed = 1+(int)(Math.random()*5);
   }
   
   public void resetLocations(){
@@ -132,9 +137,9 @@ public class Car{
   
   // **************** Helper Methods ******************
   private void update(){
-    title.setY(yLocation-10);
-    title.setX(xLocation);
-    carShape.setY(yLocation);
-    carShape.setX(xLocation);
+    title.setY(yLocation-20);
+    title.setX(xLocation-25);
+    carShape.setY(yLocation-10);
+    carShape.setX(xLocation-25);
 }
 }
