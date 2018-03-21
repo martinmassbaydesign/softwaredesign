@@ -14,6 +14,8 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.util.Duration;
 import javafx.animation.Animation;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 public class RaceTrackGUI extends Application{
   
@@ -23,26 +25,19 @@ public class RaceTrackGUI extends Application{
   private Alert  raceFinish;
   private Timeline timer;
   private boolean started;
+  private BorderPane bp;
   
   public void start(Stage start){
     venue = new RaceVenue();
     started = false;
     startButton = new Button("Start");
     
-    startButton.setOnMouseClicked((new EventHandler<MouseEvent>() {
-      public void handle(MouseEvent event){
-        timer.play();
-        System.out.println("beep");
-        started = true;
-        if(started)
-          venue.getTrack().startAgain();
-      }
-    }));
+    
     winner = new Text();
     timer = new Timeline(new KeyFrame( Duration.millis(50),new EventHandler<ActionEvent>(){
       @Override public void handle(ActionEvent actionEvent){
         drive();
-        System.out.println("boop");
+//        System.out.println("boop");
         if(venue.getTrack().checkWinner()){
           timer.pause();
           System.out.println(venue.getTrack().getWinner());
@@ -51,17 +46,40 @@ public class RaceTrackGUI extends Application{
     timer.setCycleCount(Animation.INDEFINITE);
     
     
- 
+    
     
     //  raceFinish = new Alert("The race is over!");
     
     Group g = new Group(venue.drawVenue(600,400));
     g.getChildren().add(venue.draw());
-    g.setTranslateX(100);
-    g.setTranslateY(100);
-    g.getChildren().add(startButton);
+//    g.setTranslateX(100);
+//    g.setTranslateY(100);
     
-    Scene scene = new Scene(g,1000,600);   
+    startButton.setOnMouseClicked((new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event){
+        if(started){
+          venue.getTrack().startAgain();
+          g.getChildren().remove(venue.draw());
+          g.getChildren().add(venue.draw());
+        }
+          
+        timer.play();
+        System.out.println("beep");
+        
+        
+        started = true;
+      }
+    }));
+    
+    Button pause = new Button("pause");
+    VBox buttons = new VBox(startButton,pause);
+    buttons.setTranslateX(-50);
+    buttons.setTranslateY(50);
+    //g.getChildren().add(startButton);
+    bp = new BorderPane();
+    bp.setCenter(g);
+    bp.setRight(buttons);
+    Scene scene = new Scene(bp,1300,720);   
     Stage stage = new Stage();
     stage.setScene(scene);
     stage.show();

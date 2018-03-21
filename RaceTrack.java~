@@ -17,9 +17,16 @@ public class RaceTrack {
     for(int i = 0; i < lap;i++){
       locations.add(new Location());
       locations.get(i).setCoords((90*((i-1)%2))+180,(90*((i)%3))+180);
+
       cars.add(new Car(0, 0, Color.RED,"Generic Race car","Generic Model","Car" + i));
-      cars.get(i).setX((90*((i-1)%2))+180);
-      cars.get(i).setY((90*((i)%3))+180);
+      switch(i%2){
+        case 0:
+          getLocation(i).setCoords(25+(275*i),200);
+        case 1:
+          getLocation(i).setCoords(300,200*(i-1));
+      }
+        getCar(i).setX(getLocation(i).getX());
+        getCar(i).setY(getLocation(i).getY());
     }
   }
   
@@ -87,10 +94,12 @@ public class RaceTrack {
     
   }
 
-  private void startAgain(){
+  public void startAgain(){
     for(int i = 0; i < lap; i++){
+     
       getCar(i).resetLocations();
-      
+      getCar(i).setX(getNext(i).getX());
+      getCar(i).setY(getNext(i).getY());
     }
   }
   private Location getNext(int index){

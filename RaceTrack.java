@@ -16,15 +16,14 @@ public class RaceTrack {
     locations = new ArrayList<Location>();
     for(int i = 0; i < lap;i++){
       locations.add(new Location());
-      locations.get(i).setCoords((90*((i-1)%2))+180,(90*((i)%3))+180);
+//      locations.get(i).setCoords((90*((i-1)%2))+180,(90*((i)%3))+180);
 
       cars.add(new Car(0, 0, Color.RED,"Generic Race car","Generic Model","Car" + i));
-      switch(i%2){
-        case 0:
+      if(i%2 == 0)
           getLocation(i).setCoords(25+(275*i),200);
-        case 1:
+       if(i%2 == 1)
           getLocation(i).setCoords(300,200*(i-1));
-      }
+      
         getCar(i).setX(getLocation(i).getX());
         getCar(i).setY(getLocation(i).getY());
     }
@@ -72,7 +71,7 @@ public class RaceTrack {
   //checks for winner if the car location is greater than 4
   public boolean checkWinner(){
     for(int i =0; i<cars.size(); i++){
-      if(getCar(i).getLocationsTouched() >= lap)
+      if(getCar(i).getLocationsTouched() > lap)
         return true;
     }
     return false;
@@ -95,13 +94,20 @@ public class RaceTrack {
   }
 
   public void startAgain(){
-    for(int i = 0; i < lap; i++){
-     
-      getCar(i).resetLocations();
-      getCar(i).setX(getNext(i).getX());
-      getCar(i).setY(getNext(i).getY());
+    for(int i = 0; i < lap;i++){
+      cars.get(i).draw().setVisible(false);
+      cars.get(i).resetLocations();
     }
+    cars.clear();
+    for(int i = 0; i < lap; i++){
+      cars.add(new Car(0,0, Color.RED,"Generic Race car","Generic Model","Car" + i));
+      System.out.println(getCar(i));
+      cars.get(i).setX(getNext(i).getX());
+      cars.get(i).setY(getNext(i).getY());
+    }
+    
   }
+  
   private Location getNext(int index){
     return getLocation((index+getCar(index).getLocationsTouched())%lap);
   }
