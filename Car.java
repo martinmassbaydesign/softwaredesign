@@ -77,6 +77,7 @@ public class Car{
   public Group draw(){
     Group car = new Group();
     update();
+    title.setFill(color);
     carShape.setFill(color);
     car.getChildren().add(title);
     car.getChildren().add(carShape);

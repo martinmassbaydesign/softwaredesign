@@ -22,14 +22,20 @@ public class RaceTrackGUI extends Application{
   private Text winner;
   private Alert  raceFinish;
   private Timeline timer;
+  private boolean started;
   
   public void start(Stage start){
     venue = new RaceVenue();
+    started = false;
     startButton = new Button("Start");
+    
     startButton.setOnMouseClicked((new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event){
         timer.play();
         System.out.println("beep");
+        started = true;
+        if(started)
+          venue.getTrack().startAgain();
       }
     }));
     winner = new Text();
@@ -45,10 +51,7 @@ public class RaceTrackGUI extends Application{
     timer.setCycleCount(Animation.INDEFINITE);
     
     
-    venue.getTrack().getLocation(0).setCoords(25,200);
-    venue.getTrack().getLocation(1).setCoords(300,0);
-    venue.getTrack().getLocation(2).setCoords(575,200);
-    venue.getTrack().getLocation(3).setCoords(300,400);
+ 
     
     //  raceFinish = new Alert("The race is over!");
     
