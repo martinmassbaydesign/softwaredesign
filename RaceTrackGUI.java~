@@ -16,27 +16,34 @@ import javafx.util.Duration;
 import javafx.animation.Animation;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class RaceTrackGUI extends Application{
   
   private RaceVenue venue;
   private Button startButton;
   private Text winner;
+  private Text title;
   private Alert  raceFinish;
   private Timeline timer;
   private boolean started;
   private BorderPane bp;
   
+  
   public void start(Stage start){
     venue = new RaceVenue();
     started = false;
     startButton = new Button("Start");
-    
+    VBox carInfo = new VBox(drawCarPane());
     
     winner = new Text();
+    title = new Text(); //title of the game
     timer = new Timeline(new KeyFrame( Duration.millis(50),new EventHandler<ActionEvent>(){
       @Override public void handle(ActionEvent actionEvent){
         drive();
+        carInfo.getChildren().clear();
+        carInfo.getChildren().add(drawCarPane());
 //        System.out.println("boop");
         if(venue.getTrack().checkWinner()){
           timer.pause();
@@ -62,7 +69,7 @@ public class RaceTrackGUI extends Application{
           g.getChildren().remove(venue.draw());
           g.getChildren().add(venue.draw());
         }
-          
+        
         timer.play();
         System.out.println("beep");
         
@@ -73,12 +80,26 @@ public class RaceTrackGUI extends Application{
     
     Button pause = new Button("pause");
     VBox buttons = new VBox(startButton,pause);
+    
     buttons.setTranslateX(-50);
     buttons.setTranslateY(50);
+    carInfo.setTranslateX(50);
+    
+    //add title of the game, changes the font size and color followed by a stroke.
+    title.setText("Top Gear");
+    title.setTranslateX(480);
+    title.setTranslateY(20);
+    title.setFill(Color.GREEN);
+    title.setFont(Font.font ("Verdana", FontWeight.BOLD, 80));
+    title.setStroke(Color.YELLOW);
+    title.setStrokeWidth(3);
+    
     //g.getChildren().add(startButton);
     bp = new BorderPane();
     bp.setCenter(g);
     bp.setRight(buttons);
+    bp.setLeft(carInfo);
+    bp.setTop(title);
     Scene scene = new Scene(bp,1300,720);   
     Stage stage = new Stage();
     stage.setScene(scene);
@@ -88,6 +109,17 @@ public class RaceTrackGUI extends Application{
   private void drive(){
     venue.getTrack().moveCars();
   }
+  
+  private Text drawCarPane(){
+    Text carInfo = new Text();
+    for(int i = 0; i < venue.getTrack().getCarTotal();i++){
+      carInfo.setText(carInfo.getText() + "\n\n\n\n" + venue.getTrack().getCar(i).toString());
+    }
+    return carInfo;
+  }  
+  
+
+    
   
   public static void main(String args[]){
     launch(args);

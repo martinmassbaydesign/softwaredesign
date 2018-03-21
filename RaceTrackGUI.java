@@ -4,6 +4,7 @@ import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
 import javafx.scene.input.MouseEvent; 
@@ -36,7 +37,7 @@ public class RaceTrackGUI extends Application{
     started = false;
     startButton = new Button("Start");
     VBox carInfo = new VBox(drawCarPane());
-    
+     raceFinish = new Alert(AlertType.CONFIRMATION,"The race is over!");
     winner = new Text();
     title = new Text(); //title of the game
     timer = new Timeline(new KeyFrame( Duration.millis(50),new EventHandler<ActionEvent>(){
@@ -48,19 +49,14 @@ public class RaceTrackGUI extends Application{
         if(venue.getTrack().checkWinner()){
           timer.pause();
           System.out.println(venue.getTrack().getWinner());
+          raceFinish.setContentText("The race is over!\nThe winner is: "+venue.getTrack().getWinner().getName());
+          raceFinish.show();
         }
       }}));
     timer.setCycleCount(Animation.INDEFINITE);
     
-    
-    
-    
-    //  raceFinish = new Alert("The race is over!");
-    
     Group g = new Group(venue.drawVenue(600,400));
     g.getChildren().add(venue.draw());
-//    g.setTranslateX(100);
-//    g.setTranslateY(100);
     
     startButton.setOnMouseClicked((new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event){
@@ -94,7 +90,6 @@ public class RaceTrackGUI extends Application{
     title.setStroke(Color.YELLOW);
     title.setStrokeWidth(3);
     
-    //g.getChildren().add(startButton);
     bp = new BorderPane();
     bp.setCenter(g);
     bp.setRight(buttons);
@@ -117,9 +112,6 @@ public class RaceTrackGUI extends Application{
     }
     return carInfo;
   }  
-  
-
-    
   
   public static void main(String args[]){
     launch(args);
