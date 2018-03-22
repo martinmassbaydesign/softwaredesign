@@ -1,3 +1,12 @@
+/*
+ * This is the Car class.
+ * The main purpose of this class is to design a car that will be used on a racing game
+ * A car will have a rectangle shape, with a speed, color, and a generic make and model.
+ * The X and Y location of the car will keep track of it's current location for further demonstration on the GUI
+ * In addition a car will have a random speed which will decide how fast or slow it moves on the screen
+ *
+ * This class was written by Alex, Opie and Martin
+ */
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.scene.Group;
@@ -16,6 +25,7 @@ public class Car{
   private Rectangle carShape;
   private Text title;
   
+  //default constructor
   public Car(){
     carName = "Generic car";
     xLocation = 0;
@@ -25,11 +35,12 @@ public class Car{
     locationsTouched = 0;
     make = "Generic";
     model = "Generic";
-    carShape = new Rectangle(xLocation-25,yLocation-10,50,20);
+    carShape = new Rectangle(xLocation-25,yLocation-10,50,20);//creates a new Rectangle shape
     carShape.setFill(color);
     title = new Text(xLocation,yLocation-10,carName);
   }
   
+  //parameterized constructor
   public Car(int x, int y, Color c,String mk,String mdl,String name){
     xLocation = x;
     yLocation = y;
@@ -39,12 +50,12 @@ public class Car{
     model = mdl;
     speed = 1+(int)(Math.random()*5);
     locationsTouched = 0;
-    carShape = new Rectangle(xLocation-25,yLocation-10,50,20);
+    carShape = new Rectangle(xLocation-25,yLocation-10,50,20); //creates a new Rectangle shape
     carShape.setFill(color);
     title = new Text(xLocation,yLocation-10,carName);
   }
   
-    //********************* Getters ****************************************
+    //********************* Getters ******************************************
   
   public int getY(){
     return yLocation;
@@ -66,6 +77,7 @@ public class Car{
     return model;
   }
   
+  //the return the locations touched by a car
   public int getLocationsTouched(){
     return locationsTouched;
   }
@@ -88,6 +100,7 @@ public class Car{
     return carName;
   }
   
+  //return a formatted string with the car's information
   public String toString(){
     return "Car Name: " + getName()+"\nX location: " + getX() +" Y Location: " + getY() + "\nMake: " + getMake() + " Model: " + getModel() + "\nSpeed: " + getSpeed() ;
   }
@@ -136,6 +149,7 @@ public class Car{
   }
   
   // **************** Helper Methods ******************
+  //Written by Martin
   private void update(){
     title.setY(yLocation-20);
     title.setX(xLocation-25);
