@@ -32,17 +32,18 @@ public class RaceTrackGUI extends Application{
   private boolean started;
   private BorderPane bp;
   
-  
   public void start(Stage start){
     venue = new RaceVenue();
     started = false;
-    startButton = new Button("Start");
+    
     VBox carInfo = new VBox(drawCarPane());
-     raceFinish = new Alert(AlertType.CONFIRMATION,"The race is over!");
+    raceFinish = new Alert(AlertType.CONFIRMATION,"The race is over!");
     winner = new Text();
     title = new Text(); //title of the game
-    
-    timer = new Timeline(new KeyFrame( Duration.millis(1),new EventHandler<ActionEvent>(){
+    Group g = new Group(venue.drawVenue(600,400));
+    g.getChildren().add(venue.draw());
+    //************************************* Timer stuff *******************************************************  
+    timer = new Timeline(new KeyFrame( Duration.millis(50),new EventHandler<ActionEvent>(){
       @Override public void handle(ActionEvent actionEvent){
         drive();
         carInfo.getChildren().clear();
@@ -56,8 +57,10 @@ public class RaceTrackGUI extends Application{
       }}));
     timer.setCycleCount(Animation.INDEFINITE);
     
-    Group g = new Group(venue.drawVenue(600,400));
-    g.getChildren().add(venue.draw());
+    //************************************* Buttons ***********************************************************
+    
+    
+    startButton = new Button("Start");
     
     startButton.setOnMouseClicked((new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event){
@@ -66,17 +69,25 @@ public class RaceTrackGUI extends Application{
           g.getChildren().remove(venue.draw());
           g.getChildren().add(venue.draw());
         }
-        
         timer.play();
         System.out.println("beep");
-        
-        
         started = true;
-      }
-    }));
-    
+      }}));
+
     Button pause = new Button("pause");
-    VBox buttons = new VBox(startButton,pause);
+    pause.setOnMouseClicked((new EventHandler<MouseEvent>(){
+      public void handle(MouseEvent event){
+        if(started){
+          timer.pause();
+          started = false;
+        }}}));
+    
+    Rectangle buttonBox = new Rectangle(-15,-15,70,80);
+    buttonBox.setFill(Color.LIGHTGRAY);
+    buttonBox.setStroke(Color.BLACK);
+    pause.setTranslateY(30);
+    VBox buttons = new VBox(new Group(buttonBox,startButton,pause));
+    
     
     buttons.setTranslateX(-50);
     buttons.setTranslateY(50);
@@ -102,10 +113,13 @@ public class RaceTrackGUI extends Application{
     stage.show();
   }
   
+  // Moves the cars
+  // Code by Martin
   private void drive(){
     venue.getTrack().moveCars();
   }
-  
+  // Draws the car information and boxes around it.
+  // Code by Martin
   private Group drawCarPane(){
     Text carInfo = new Text();
     Rectangle mainBox = new Rectangle(0,25,300,450);
