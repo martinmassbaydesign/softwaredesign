@@ -20,18 +20,18 @@ public class RaceVenue{
   public RaceVenue(){
     track = new RaceTrack();
     carInformation = new Text();
-//    this.musicFile = "Top Gear Music.mp3";
+    this.musicFile = "Top Gear Music.mp3";
     this.venueName = "Awakenings";
-//    soundTrack = new Media(new File(musicFile).toURI().toString());
-//    mediaPlayer = new MediaPlayer(soundTrack);
-//    mediaPlayer.play();
+    soundTrack = new Media(new File(musicFile).toURI().toString());
+    mediaPlayer = new MediaPlayer(soundTrack);
+    mediaPlayer.play();
   }
   public RaceVenue(String musicFile, String venueName){
-//    this.musicFile = musicFile;
+    this.musicFile = musicFile;
     this.venueName = venueName;
-//    soundTrack = new Media(new File(musicFile).toURI().toString());
-//    mediaPlayer = new MediaPlayer(soundTrack);
-//    mediaPlayer.play();
+    soundTrack = new Media(new File(musicFile).toURI().toString());
+    mediaPlayer = new MediaPlayer(soundTrack);
+    mediaPlayer.play();
     track = new RaceTrack();
     carInformation = new Text();
   }
@@ -43,8 +43,8 @@ public class RaceVenue{
   public String getVenueName(){
     return venueName;
   }
-  // Takes the canvas size, and draws the race track with an inner and outer circle.
-  // Returns the drawn track.
+//   Takes the canvas size, and draws the race track with an inner and outer circle.
+//   Returns the drawn track.
   public Group drawVenue(int canvasWidth,int canvasHeight){
     Group g = new Group();
     Ellipse e1 = new Ellipse(canvasWidth/2,canvasHeight/2,(canvasWidth*2)/3,(canvasHeight*2)/3);

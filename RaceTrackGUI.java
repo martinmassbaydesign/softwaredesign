@@ -42,7 +42,7 @@ public class RaceTrackGUI extends Application{
     winner = new Text();
     title = new Text(); //title of the game
     
-    timer = new Timeline(new KeyFrame( Duration.millis(50),new EventHandler<ActionEvent>(){
+    timer = new Timeline(new KeyFrame( Duration.millis(1),new EventHandler<ActionEvent>(){
       @Override public void handle(ActionEvent actionEvent){
         drive();
         carInfo.getChildren().clear();

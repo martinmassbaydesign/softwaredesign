@@ -20,18 +20,18 @@ public class RaceVenue{
   public RaceVenue(){
     track = new RaceTrack();
     carInformation = new Text();
-    this.musicFile = "Top Gear Music.mp3";
+//    this.musicFile = "Top Gear Music.mp3";
     this.venueName = "Awakenings";
-    soundTrack = new Media(new File(musicFile).toURI().toString());
-    mediaPlayer = new MediaPlayer(soundTrack);
-    mediaPlayer.play();
+//    soundTrack = new Media(new File(musicFile).toURI().toString());
+//    mediaPlayer = new MediaPlayer(soundTrack);
+//    mediaPlayer.play();
   }
   public RaceVenue(String musicFile, String venueName){
-    this.musicFile = musicFile;
+//    this.musicFile = musicFile;
     this.venueName = venueName;
-    soundTrack = new Media(new File(musicFile).toURI().toString());
-    mediaPlayer = new MediaPlayer(soundTrack);
-    mediaPlayer.play();
+//    soundTrack = new Media(new File(musicFile).toURI().toString());
+//    mediaPlayer = new MediaPlayer(soundTrack);
+//    mediaPlayer.play();
     track = new RaceTrack();
     carInformation = new Text();
   }
@@ -48,7 +48,7 @@ public class RaceVenue{
   public Group drawVenue(int canvasWidth,int canvasHeight){
     Group g = new Group();
     Ellipse e1 = new Ellipse(canvasWidth/2,canvasHeight/2,(canvasWidth*2)/3,(canvasHeight*2)/3);
-    Ellipse e2 = new Ellipse(canvasWidth/2,canvasHeight/2,canvasWidth/3,canvasHeight/3);
+    Ellipse e2 = new Ellipse(canvasWidth/2,canvasHeight/2,canvasWidth/4,canvasHeight/4);
     e1.setFill(Color.BLACK);
     e2.setFill(Color.GREEN);
     g.getChildren().add(e1);
