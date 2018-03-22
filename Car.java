@@ -89,7 +89,7 @@ public class Car{
   }
   
   public String toString(){
-    return "X location: " + getX() +" Y Location: " + getY() + "\nMake: " + getMake() + "\nModel: " + getModel() + "\nSpeed: " + getSpeed() + "\nName: " + getName();
+    return "Car Name: " + getName()+"\nX location: " + getX() +" Y Location: " + getY() + "\nMake: " + getMake() + " Model: " + getModel() + "\nSpeed: " + getSpeed() ;
   }
   
    //********************* Setters ****************************************

@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.scene.input.MouseEvent; 
 import javafx.event.EventHandler;
@@ -40,12 +41,12 @@ public class RaceTrackGUI extends Application{
      raceFinish = new Alert(AlertType.CONFIRMATION,"The race is over!");
     winner = new Text();
     title = new Text(); //title of the game
+    
     timer = new Timeline(new KeyFrame( Duration.millis(50),new EventHandler<ActionEvent>(){
       @Override public void handle(ActionEvent actionEvent){
         drive();
         carInfo.getChildren().clear();
         carInfo.getChildren().add(drawCarPane());
-//        System.out.println("boop");
         if(venue.getTrack().checkWinner()){
           timer.pause();
           System.out.println(venue.getTrack().getWinner());
@@ -105,12 +106,23 @@ public class RaceTrackGUI extends Application{
     venue.getTrack().moveCars();
   }
   
-  private Text drawCarPane(){
+  private Group drawCarPane(){
     Text carInfo = new Text();
+    Rectangle mainBox = new Rectangle(0,25,300,450);
+    mainBox.setFill(Color.LIGHTBLUE);
+    mainBox.setStroke(Color.BLACK);
+    mainBox.setTranslateX(-25);
+    Rectangle boxes[] = new Rectangle[venue.getTrack().getCarTotal()];
+    Group group = new Group(mainBox);
     for(int i = 0; i < venue.getTrack().getCarTotal();i++){
+      boxes[i] = new Rectangle(0,(112*i)+50,250,70);
+      boxes[i].setFill(Color.LIGHTGREY);
+      boxes[i].setStroke(Color.BLACK);
       carInfo.setText(carInfo.getText() + "\n\n\n\n" + venue.getTrack().getCar(i).toString());
+      group.getChildren().add(boxes[i]);
     }
-    return carInfo;
+    group.getChildren().add(carInfo);
+    return group;
   }  
   
   public static void main(String args[]){
